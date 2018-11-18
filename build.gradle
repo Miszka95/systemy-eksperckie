@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'pl.edu.wat.App'
+
+dependencies {
+    compile 'com.scalified:tree:0.2.5'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    testCompile 'junit:junit:4.12'
+}
+
+repositories {
+    mavenCentral()
+}
