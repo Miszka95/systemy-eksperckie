@@ -1,12 +1,12 @@
 package pl.edu.wat;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import lombok.Getter;
 
 class Board {
 
@@ -39,8 +39,20 @@ class Board {
         queen(row, column);
     }
 
-    long countEmptyFields() {
-        return countState(FieldState.EMPTY);
+    double scoreForMove(Move move) {
+        double score = 0.0;
+        int currentRow = move.getRow() + 1;
+        for (int i = currentRow; i < fields.length; i++) {
+            for (int j = 0; j < fields.length; j++) {
+                if (FieldState.EMPTY.equals(fields[i][j].getState())) {
+                    score += i;
+                }
+            }
+        }
+        score = score / currentRow;
+        print();
+        System.out.println("SCORE: " + score);
+        return score;
     }
 
     long countQueens() {

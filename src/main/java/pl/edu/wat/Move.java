@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.lang.System.out;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ class Move {
     private int id;
     private int row;
     private int column;
-    private long score;
+    private double score;
     private boolean lastQueen;
 
     static Optional<Move> createMove(List<Move> moves, int targetRow, int targetColumn) {
@@ -29,9 +30,8 @@ class Move {
         }
 
         board.applyMove(move);
-        move.setScore(board.countEmptyFields());
+        move.setScore(board.scoreForMove(move));
         move.setLastQueen(board.countQueens() == Algorithm.SIZE);
-//        move.log();
         return Optional.of(move);
     }
 

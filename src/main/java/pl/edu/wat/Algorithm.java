@@ -1,19 +1,13 @@
 package pl.edu.wat;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import com.scalified.tree.TreeNode;
+import lombok.Getter;
+
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import com.scalified.tree.TreeNode;
-
-import lombok.Getter;
 
 @Getter
 public class Algorithm {
@@ -74,7 +68,7 @@ public class Algorithm {
     private Supplier<TreeNode<Move>> findBestNode(Set<TreeNode<Move>> nodes) {
         return () -> nodes.stream()
                 .filter(node -> !usedNodes.contains(node))
-                .max(Comparator.comparingLong(n -> getMove(n).getScore()))
+                .max(Comparator.comparingDouble(n -> getMove(n).getScore()))
                 .orElseThrow(() -> new RuntimeException("Cannot find best node!"));
     }
 
